@@ -6,25 +6,19 @@ def find_ant_sequence(n):
 
     prev = find_ant_sequence(n-1)
     curr = []
-    stack = []
 
     for s in prev:
-        if not stack:
-            stack.append(s)
+        if not curr:
+            curr.append(1)
+            curr.append(s)
         else:
-            if s == stack[-1]:
-                stack.append(s)
+            if curr[-1] == s:
+                curr[-2] += 1
             else:
-                curr.append(str(len(stack)))
-                curr.append(stack[-1])
-                stack.clear()
-                stack.append(s)
+                curr.append(1)
+                curr.append(s)
 
-    if stack:
-        curr.append(str(len(stack)))
-        curr.append(stack[-1])
-
-    return ''.join(curr)
+    return ''.join(map(str, curr))
 
 
 def find_middle_two(n):
