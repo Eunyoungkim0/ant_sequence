@@ -8,15 +8,11 @@ def find_ant_sequence(n):
     curr = []
 
     for s in prev:
-        if not curr:
+        if curr and curr[-1] == s:
+            curr[-2] += 1
+        else:
             curr.append(1)
             curr.append(s)
-        else:
-            if curr[-1] == s:
-                curr[-2] += 1
-            else:
-                curr.append(1)
-                curr.append(s)
 
     return ''.join(map(str, curr))
 
